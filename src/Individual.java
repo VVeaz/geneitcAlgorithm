@@ -10,7 +10,7 @@ public class Individual {
     public void fitness(){
         int f=0;
         for(int i=0; i<dna.length(); i++){
-            if(dna.charAt(i) == '0'){
+            if(dna.charAt(i) == '1'){
                 f++;
             }
 
@@ -33,6 +33,12 @@ public class Individual {
         }
         dna = d.toString();
     }
+
+    public Individual(String dnaFromParents) {
+
+        dna = dnaFromParents;
+    }
+
     public static Comparator<Individual> comp(){
         return new Comparator<Individual>(){
             @Override
