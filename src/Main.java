@@ -7,7 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         List<Individual> population = new ArrayList<>();
-        for(int i=0; i<100; i++){
+        int numberOfPopulation = 100;
+        for(int i=0; i<numberOfPopulation; i++){
             population.add(new Individual());
         }
 
@@ -19,8 +20,7 @@ public class Main {
             }
             population.sort(Individual.comp());
 
-            //System.out.println("---------");
-            //System.out.println(sumOfFit);
+
             List<Individual> crossbreedingList = new ArrayList<>();
             for (Individual individual : population) {
                 individual.setPercentageShare(sumOfFit);
@@ -29,25 +29,22 @@ public class Main {
                 }
             }
             if(sumOfFit == 800){
-                System.out.println(t);
+                System.out.println("time: "+t);
                 break;
             }
-//        for(Individual individual : crossbreedingList){
-//            System.out.println(individual.dna+ " "+ individual.fit+ " "+individual.percentageShare);
-//        }
+            System.out.println(population.get(0).dna +" "+population.get(0).fit+"  //best in "+ t);
+            System.out.println(population.get(population.size() - 1).dna+" "+population.get(population.size() - 1).fit+"   //worst in"+t);
+            System.out.println("---------------------------------------");
             Random generator = new Random();
             population.clear();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < numberOfPopulation; i++) {
                 int motherIndex = generator.nextInt(crossbreedingList.size());
                 int fatherIndex = generator.nextInt(crossbreedingList.size());
                 population.add(new Individual(crossbreedingList.get(motherIndex).dna.substring(0, 4) +
-                        crossbreedingList.get(fatherIndex).dna.substring(0, 4)));
+                        crossbreedingList.get(fatherIndex).dna.substring(4, 8)));
             }
             crossbreedingList.clear();
 
-//        for(Individual individual : population){
-//            System.out.println(individual.dna+ " "+ individual.fit+ " "+individual.percentageShare);
-//        }
 
         }
         for(Individual individual : population){
